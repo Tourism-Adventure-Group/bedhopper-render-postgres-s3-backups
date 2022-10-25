@@ -14,7 +14,7 @@ services:
           property: connectionString
       # pick the region closest to your database
       # For example, us-west-2 for the Oregon region
-      - key: ap-southeast-1
+      - key: AWS_REGION
         sync: false 
       # A globally unique name for your bucket
       # For example, <your-username>-<database name>-render-postgres-backups
