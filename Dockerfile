@@ -1,12 +1,9 @@
-FROM amazon/aws-cli:latest
-ARG POSTGRES_VERSION
+FROM postgres:14.24-bookworm
 
-RUN yum update -y \
-    && yum install -y gzip
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends awscli gzip \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /scripts
-COPY install-pg-dump.sh .
-RUN "/scripts/install-pg-dump.sh"
-
 COPY backup.sh .
 ENTRYPOINT [ "/scripts/backup.sh" ]
